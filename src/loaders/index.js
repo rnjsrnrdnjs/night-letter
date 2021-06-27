@@ -2,6 +2,7 @@ const expressLoader=require('./express');
 
 module.exports=async (app)=>{
 	//db
+	/*
 	const {sequelize} =require('../models');
 	  sequelize
         .sync({ force: false })
@@ -11,7 +12,7 @@ module.exports=async (app)=>{
         .catch((err) => {
             console.error(err);
         });
-	
+	*/
 	await expressLoader(app);
 };
 

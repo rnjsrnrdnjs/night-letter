@@ -10,7 +10,7 @@ module.exports=(app)=>{
 
 	
 	router.get('/',(req,res,next)=>{
-		res.render('index');
+		res.render('load');
 	});
 }
 
