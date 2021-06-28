@@ -12,5 +12,12 @@ module.exports=(app)=>{
 	router.get('/',(req,res,next)=>{
 		res.render('load');
 	});
+	router.get('/main',async(req,res,next)=>{
+		try{
+			res.render('main');
+		}catch(err){
+			console.error(err);	
+		}
+	});
 }
 

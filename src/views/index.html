@@ -7,14 +7,18 @@
 		<meta name="viewport" content="width=device-width,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<link rel="stylesheet" href="/index.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		{% block content %} {% endblock %}
 
 		<!-- Javascript code that runs our Three.js examples -->
-		<script>
-			history.pushState(null, null, location.href);
-		</script>
-		{% block script %} {% endblock %}
+	<script>
+		history.pushState(null, null, location.href);
+	</script>
+	{% block script %} {% endblock %}
 	</body>
+	
 </html>

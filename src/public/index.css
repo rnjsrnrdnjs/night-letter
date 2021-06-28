@@ -1,0 +1,142 @@
+body{
+	margin:0 auto;
+	box-sizing:border-box;
+	
+}
+.load *{
+	display:flex;
+	font-family: 'Gaegu', cursive;
+}
+.main *{
+	display:flex;
+	font-family: 'Gaegu', cursive;
+}
+.load{
+	width:100vw;
+	height:100vh;
+	background:url(/photo/loadBG.jpg);
+	background-size:100% 100%;
+	
+}
+.loadMoon{
+	position: absolute;
+    background: url(/photo/loadMoon.png);
+    background-size: 100% 100%;
+    top: 10vh;
+    left: 30vw;
+    width: 100px;
+    height: 11vh;
+	animation:moon 5s infinite linear;
+	z-index:2;
+}
+.loadBox{
+	width:100vw;
+	flex-direction:column;
+}
+.loadHead{
+	font-weight: bold;
+    font-size: 1.6rem;
+    width: 100vw;
+    height: 30vh;
+    justify-content: center;
+    align-items: flex-end;
+}
+.loadBtn{
+	cursor: pointer;
+    width: 100px;
+    height: 60px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: aliceblue;
+    margin-top: 38vh;
+    justify-content: center;
+    align-self: center;
+    border: 1px solid white;
+    align-items: center;
+    background: steelblue;
+    box-shadow: 2px 2px cornflowerblue;
+    border-radius: 10px;
+}
+.loadSen{
+	margin-top: 3vh;
+    flex-direction: column;
+    color: antiquewhite;
+    text-shadow: 1px 0px;
+}
+
+.loadRain{
+	background:url(/photo/loadRain.png);
+	background-size:100% 100%;
+	position:absolute;
+	top:5vh;
+	left:40vw;
+	width:60px;
+	height:60px;
+	z-index:1;
+	animation:rain 3s infinite linear;
+}
+@keyframes moon{
+	0%{
+		left:30vw;
+		transform:scale(1) skewy(0deg);
+	}
+	25%{
+		left:35vw;
+		transform:scale(1.2) skewy(5deg);
+	}
+	50%{
+		left:40vw;
+		transform:scale(1) skewy(0deg);
+	}
+	75%{
+		left:35vw;
+		transform:scale(1.2) skewy(-5deg);
+	}
+	100%{
+		left:30vw;
+		transform:scale(1) skewy(0deg);
+	}
+}
+@keyframes rain{
+	0%{
+		top:5vh;
+	}
+	20%{
+		top:25vh;
+	}
+	40%{
+		top:45vh;
+	}
+	60%{
+		top:65vh;
+	}
+	80%{
+		top:85vh;
+	}
+	100%{
+		top:105vh;
+	}
+}
+
+
+.main{
+	background:url(/photo/mainBG.png);
+	background-size:100% 100%;
+	width:100vw;
+	height:100vh;
+}
+.mainHead{
+	
+}
+.mailbox{
+	
+}
+.letter{
+	
+}
+.mainbird{
+	
+}
+.wave{
+	
+}
