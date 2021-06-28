@@ -1,7 +1,7 @@
 body{
 	margin:0 auto;
 	box-sizing:border-box;
-	
+	overflow:hidden;
 }
 .load *{
 	display:flex;
@@ -126,17 +126,78 @@ body{
 	height:100vh;
 }
 .mainHead{
-	
+	width: 80vw;
+    margin-left: 10vw;
+    height: 20vh;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 3px 2px black;
+    color: gold;
 }
 .mailbox{
-	
+	background:url(/photo/postbox.png);
+	background-size:100% 100%;
+	z-index:1;
+	position: absolute;
+    width: 10%;
+    left: 2vw;
+    height: 30%;
 }
 .letter{
-	
+	background:url(/photo/letter.png);
+	background-size:100% 100%;
+	z-index:1;
+	position: absolute;
+    width: 10%;
+    right: 2vw;
+    height: 30%;
 }
 .mainbird{
+	background:url(/photo/mainBird.png);
+	background-size:100% 100%;
+	position:absolute;
+	z-index:2;
+	width:60vw;
+	height:20vh;
+	top:70vh;
+	animation:mainB 4s infinite linear;
+}
+.write{
+	background: url(/photo/sheet.png);
+    background-size: 100% 100%;
+    position: absolute;
+    width: 98vw;
+    height: 60vh;
+    top: 30vh;
+    left: 1vw;
+    z-index: 3;
+}
+.list{
 	
 }
-.wave{
+.letterBird{
 	
+}
+.question{
+	
+}
+
+@keyframes mainB{
+	0%{
+		transform:translateY(0px) skewx(0deg);
+	}
+	25%{
+		transform:translateY(-5px) skewx(-3deg);
+	}
+	50%{
+		transform:translateY(-10px) skewx(-6deg);
+	}
+	75%{
+		transform:translateY(-5px) skewx(-3deg);
+	}
+	100%{
+		transform:translateY(-0px) skewx(0deg);
+	}
 }

@@ -2,21 +2,80 @@
 {% block content %} 
 <div class="main">
 	<div class="mainHead">
+		더 잘할 수 없어도 더 노력하는 거라면 그게 더 아름다운게 아닐까 
 	</div>
-	<div class="mailbox">
+	<div class="write" style="display:none;">
+		<div style="background: url(/photo/cancel.png);
+    position: absolute;
+    background-size: 100% 100%;
+    width: 40px;
+    height: 40px;
+    right: 5%;cursor: pointer;">
+		</div>
+		<textarea style="    background: transparent;
+    border: 3px solid white;
+    box-shadow: goldenrod 2px 2px;
+    width: 82vw;
+    margin-left: 8vw;
+    height: 40vh;
+    margin-top: 6vh;
+    font-size: 1.3rem;
+    resize: none;" maxlength="1000">
+		
+		</textarea>
 	</div>
-	<div class="letter">
+	<div class="list">
+	</div>
+	
+	<div style="position: absolute;
+    width: 100vw;
+    height: 20vh;
+    top: 40vh;">
+		<div style=" box-shadow: 1px 2px firebrick;
+    width: 10%;
+    height: 30%;
+    margin-left: 2vw;
+    border-radius: 50%;">
+		<div class="mailbox">
+		</div>
+		</div>
+		<div style="    background: url(/photo/pen.png);
+    background-size: 100% 100%;
+    right: 2%;
+    width: 5%;
+    z-index: 2;
+    position: absolute;
+    height: 25%;">
+		</div>		
+		<div class="letter">
+		</div>
 	</div>
 	
 	<div class="mainbird">
 	</div>
-	<div class="wave">
+	
+	
+	<div class="letterBird">
+	</div>
+	<div class="question">
 	</div>
 	
 </div>
+
+<div style="display:none;">아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+<div style="display:none;">아이콘 제작자 <a href="" title="iconixar">iconixar</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+<div style="display:none;">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<div style='display:none;'>아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 {% endblock %}
 {% block script %} 
 <script>
-
+	const comfort=['더 잘할 수 없어도 더 노력하는 거라면 그게 더 아름다운게 아닐까','곧 힘들지 않은 날이 올거야 분명.','아무런 가능성이 없었다면 처음부터 시작하지도 않았을 거야. ','반드시 좋은 날은 찾아와. 포기하지만 않는다면. ',`'힘내야지..'가 아닌 '힘낼 거야'가 되기.`,'포기하지 마. ','걱정하지 마. 잘하고 있어. ','걸림돌인지 디딤돌인지 그에 대한 판단은 나 스스로의 몫이다. ','쉬지 않고 걷는 것보다 제대로 된 방향인지 한 번더 살펴볼 필요가 있어. '];
+	
+	const mainHead=document.getElementsByClassName('mainHead')[0];
+	let idx=0;
+	setInterval(()=>{
+		mainHead.textContent=comfort[idx++];
+		idx=idx>=comfort.length?0:idx;
+	},4000);
 </script>
 {% endblock %}
