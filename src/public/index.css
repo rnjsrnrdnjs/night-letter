@@ -2,6 +2,7 @@ body{
 	margin:0 auto;
 	box-sizing:border-box;
 	overflow:hidden;
+	max-width:1024;
 }
 .load *{
 	display:flex;
@@ -78,23 +79,23 @@ body{
 @keyframes moon{
 	0%{
 		left:30vw;
-		transform:scale(1) skewy(0deg);
+		transform:scale(1);
 	}
 	25%{
 		left:35vw;
-		transform:scale(1.2) skewy(5deg);
+		transform:scale(1.2);
 	}
 	50%{
 		left:40vw;
-		transform:scale(1) skewy(0deg);
+		transform:scale(1);
 	}
 	75%{
 		left:35vw;
-		transform:scale(1.2) skewy(-5deg);
+		transform:scale(1.2);
 	}
 	100%{
 		left:30vw;
-		transform:scale(1) skewy(0deg);
+		transform:scale(1);
 	}
 }
 @keyframes rain{
@@ -175,13 +176,42 @@ body{
     z-index: 3;
 }
 .list{
-	
+	display:none;
+	width: 100vw;
+    margin-top: 5vh;
+    height: 75vh;
+    background: #2F4C74;
 }
 .letterBird{
-	
+	display:none;
+	background: url(/photo/letterBird.png);
+    background-size: 100% 100%;
+    position: absolute;
+    z-index: 3;
+    bottom: 10vh;
+    left: 10vw;
+    width: 50vw;
+    height: 30vh;
+	animation:letterB 3s linear;
 }
 .question{
-	
+	position: absolute;
+    background: url(/photo/question.png);
+    background-size: 100% 100%;
+    width: 45px;
+    height: 45px;
+    right: 5%;
+    top: 5%;
+    cursor: pointer;
+}
+.explain{
+	display:none;
+	position:absolute;
+	left:10vw;
+	top:10vh;
+	width:80vw;
+	height:80vh;
+	background:white;
 }
 
 @keyframes mainB{
@@ -199,5 +229,37 @@ body{
 	}
 	100%{
 		transform:translateY(-0px) skewx(0deg);
+	}
+}
+@keyframes letterB{
+	0%{
+		transform:scale(1);
+		left:10vw;
+		bottom:10vh;
+	}
+	25%{
+		transform:scale(0.75);
+		left:11vw;
+		bottom:22vh;
+	}
+	50%{
+		transform:scale(0.5);
+		left:12vw;
+		bottom:34vh;
+	}
+	75%{
+		transform:scale(0.25);
+		left:13vw;
+		bottom:46vh;
+	}
+	100%{
+		transform:scale(0);
+		left:14vw;
+		bottom:58vh;
+	}
+}
+@media screen and (min-width: 767px) {
+	.mainHead{
+		font-size:2rem;
 	}
 }
