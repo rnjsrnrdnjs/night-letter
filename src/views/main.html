@@ -2,7 +2,6 @@
 {% block content %} 
 <div class="main">
 	<div class="mainHead">
-		더 잘할 수 없어도 더 노력하는 거라면 그게 더 아름다운게 아닐까 
 	</div>
 	<div class="write" style="display:none;">
 		<div class="writeExit" style="background: url(/photo/cancel.png);
@@ -92,8 +91,16 @@
 	const writeExit=document.getElementsByClassName('writeExit')[0];
 	const pen=document.getElementsByClassName('pen')[0];
 	const mailbox=document.getElementsByClassName('mailbox')[0];
+	const letterSubmit=document.getElementById('letterSubmit');
 	
-	
+	letterSubmit.addEventListener('click',()=>{
+		const letterWrite=document.getElementById('letterWrite');
+		axios.post('/post/write',{
+			content:letterWrite.value,
+		}).then((res)=>{
+			
+		});
+	});
 	
 	mailbox.addEventListener('click',()=>{
 		// 대화목록
@@ -109,6 +116,15 @@
 		write.style.display="none";
 	});
 	let bIdx=0;
+	
+		mainHead.textContent="";
+		for(let i=0;i<comfort[0].length;i++){
+			setTimeout(()=>{
+				mainHead.textContent+=comfort[0][i];
+			},2500*((i+1)/comfort[0].length ) );
+			
+		}
+	
 	setInterval(()=>{
 		while(true){
 			const rIdx=Math.floor(Math.random()*comfort.length);

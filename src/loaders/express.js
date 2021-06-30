@@ -17,18 +17,6 @@ module.exports = (app) => {
         express: app,
         watch: true,
     });
-    /*
-    const sessionMiddleware = session({
-        resave: false,
-        saveUninitialized: false,
-        secret: process.env.COOKIE_SECRET,
-        cookie: {
-            httpOnly: true,
-            secure: false,
-        },
-        store: new RedisStore({ client: redisClient }),
-    });
-	*/
     /*  https를 사용해야하는경우 
 	if(process.env.NODE_ENV==='production'){
 		sessionMiddleware.proxy=true;
@@ -51,6 +39,16 @@ module.exports = (app) => {
     app.use(express.urlencoded({ extended: false }));
     app.use(cookieParser(process.env.COOKIE_SECRET));
     //app.use(sessionMiddleware);
+    app.use(session({
+        resave: false,
+        saveUninitialized: false,
+        secret: process.env.COOKIE_SECRET,
+        cookie: {
+            httpOnly: true,
+            secure: false,
+        },
+		name:'session-cookie',
+    }));
 
     app.use(router());
 

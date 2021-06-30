@@ -6,7 +6,7 @@
 	<div class="loadBox">
 		<div class="loadHead">
 			<span style="color: gold;
-    margin-right: 10px;">밤</span>편지
+    margin-right: 10px;">고민</span>있어요?
 		</div>
 		<div class="loadBtn" onClick="location.href='/main';">
 			입장
@@ -40,6 +40,13 @@
 {% endblock %}
 {% block script %} 
 <script>
-	
+	if(localStorage.getItem('uuid')==null){
+		axios.post(`/post/makeUUID`).then((res)=>{
+			localStorage.setItem('uuid',res.data.uuid);
+		});
+	}
+	else{
+		axios.post(`/post/loginUUID`,{uuid:localStorage.getItem('uuid')});
+	}
 </script>
 {% endblock %}
