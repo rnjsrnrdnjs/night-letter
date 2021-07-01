@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { User,Chat } = require('../../models');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op; 
 
 module.exports = (app) => {
 	app.use('/', router);
@@ -17,7 +20,19 @@ module.exports = (app) => {
 	});
 	router.get('/main', async (req, res, next) => {
 		try {
-			res.render('main',{});
+			const chats=await Chat.findAll({
+				where:{
+					[Op.or]: [{send: req.session.uuid}, {receive: req.session.uuid}],
+				}
+			});
+			const send=[];
+			const receive=[];
+			const map=new Map();
+			
+			console.log(chats);
+			res.render('main',{
+				chats:chats,
+			});
 		} catch (err) {
 			console.error(err);
 		}

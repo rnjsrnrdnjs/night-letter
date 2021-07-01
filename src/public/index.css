@@ -206,15 +206,23 @@ body{
     cursor: pointer;
 }
 .explain{
-	display:none;
-	position:absolute;
-	left:10vw;
-	top:10vh;
-	width:80vw;
-	height:80vh;
-	background:white;
+	display: none;
+    position: absolute;
+    background: #F6EDDC;
+    left: 10vw;
+    top: 10vh;
+    width: 80vw;
+    height: 80vh;
+    flex-direction: column;
+    border-radius: 5px;
+    color: #1F3153;
+    font-weight: bold;
+    text-shadow: 1px 1px gold;
 }
-
+.explain > div{
+	    text-decoration: underline;
+    padding: 2vh;
+}
 @keyframes mainB{
 	0%{
 		transform:translateY(0px) skewx(0deg);

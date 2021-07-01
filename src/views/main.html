@@ -1,146 +1,258 @@
-{% extends 'index.html' %}
-{% block content %} 
+{% extends 'index.html' %} {% block content %}
 <div class="main">
-	<div class="mainHead">
-	</div>
-	<div class="write" style="display:none;">
-		<div class="writeExit" style="background: url(/photo/cancel.png);
-    position: absolute;
-    background-size: 100% 100%;
-    width: 40px;
-    height: 40px;
-    right: 5%;cursor: pointer;">
-		</div>
-		<textarea id="letterWrite"name="write"  style="    background: transparent;
-    border: none;
-    width: 82vw;
-    margin-left: 8vw;
-    height: 40vh;
-    margin-top: 6vh;
-    font-size: 1.3rem;
-    resize: none;" maxlength="1000" placeholder="가끔씩은 마음에 짐을 내려놓을 필요가 있어요... 이곳에 털어놓으세요"></textarea>
-		<div id="letterSubmit" style="cursor: pointer;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 78%;
-    left: 13%;
-    background: wheat;
-    border: 1px solid #39557B;
-    border-radius: 15px;
-    box-shadow: 2px 1px #203051;
-    padding: 1vh;">
-			<div style="background: url(/photo/airplane.png);
-    background-size: 100% 100%; width:100%;height:100%;">
-			</div>
+	<div class="mainHead"></div>
+	<div class="write" style="display: none;">
+		<div
+			class="writeExit"
+			style="
+				background: url(/photo/cancel.png);
+				position: absolute;
+				background-size: 100% 100%;
+				width: 40px;
+				height: 40px;
+				right: 5%;
+				cursor: pointer;
+			"
+		></div>
+		<textarea
+			id="letterWrite"
+			name="write"
+			style="
+				background: transparent;
+				border: none;
+				width: 82vw;
+				margin-left: 8vw;
+				height: 40vh;
+				margin-top: 6vh;
+				font-size: 1.3rem;
+				resize: none;
+			"
+			maxlength="1000"
+			placeholder="가끔씩은 마음에 짐을 내려놓을 필요가 있어요... 이곳에 털어놓으세요"
+		></textarea>
+		<div
+			id="letterSubmit"
+			style="
+				cursor: pointer;
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				top: 78%;
+				left: 13%;
+				background: wheat;
+				border: 1px solid #39557b;
+				border-radius: 15px;
+				box-shadow: 2px 1px #203051;
+				padding: 1vh;
+			"
+		>
+			<div
+				style="
+					background: url(/photo/airplane.png);
+					background-size: 100% 100%;
+					width: 100%;
+					height: 100%;
+				"
+			></div>
 		</div>
 	</div>
 	<div class="list">
-	</div>
-	
-	<div style="position: absolute;
-    width: 100vw;
-    height: 20vh;
-    top: 40vh;">
-		<div style=" box-shadow: 1px 2px firebrick;
-    width: 10%;
-    height: 30%;
-    margin-left: 2vw;
-    border-radius: 50%;">
-		<div class="mailbox">
+		<div>
+			<span>보낸편지</span>
+			<span>받은편지</span>
 		</div>
-		</div>
-		<div class="pen" style="    background: url(/photo/pen.png);
-    background-size: 100% 100%;
-    right: 2%;
-    width: 5%;
-    z-index: 2;
-    position: absolute;
-    height: 25%;">
-		</div>		
-		<div class="letter">
-		</div>
+		<!--for 문 편지들-->
 	</div>
-	
-	<div class="mainbird">
+
+	<div id="boxDiv" style="position: absolute; width: 100vw; height: 20vh; top: 40vh;">
+		<div
+			style="
+				box-shadow: 1px 2px firebrick;
+				width: 10%;
+				height: 30%;
+				margin-left: 2vw;
+				border-radius: 50%;
+			"
+		>
+			<div class="mailbox"></div>
+		</div>
+		<div
+			class="pen"
+			style="
+				background: url(/photo/pen.png);
+				background-size: 100% 100%;
+				right: 2%;
+				width: 5%;
+				z-index: 2;
+				position: absolute;
+				height: 25%;
+			"
+		></div>
+		<div class="letter"></div>
 	</div>
-	
+
+	<div class="mainbird"></div>
+
 	<div class="explain">
-		
+		<h2 style="justify-content: center;">
+			사용법
+		</h2>
+		<div>
+			말하기 힘든 고민을 털어놓을수 있는 기회에요
+		</div>
+		<div>
+			오른쪽 편지를 누르고 전송(비행기)을 누르면 누군가에게 편지가 전송되요.
+		</div>
+		<div>
+			왼쪽 편지함을 통해 보내거나 받은 편지를 확인할수 있어요.
+		</div>
+		<div>
+			편지는 30일 동안 접속이없던 사람에게는 보내지지 않아요.
+		</div>
+		<div>
+			다른 기기에서는 같은 아이디로 로그인이 안되요!
+		</div>
 	</div>
-	<div class="letterBird">
-	</div>
-	<div class="question">
-	</div>
-	
+	<div class="letterBird"></div>
+	<div class="question"></div>
 </div>
 
-<div style="display:none;">아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-<div style="display:none;">아이콘 제작자 <a href="" title="iconixar">iconixar</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-<div style="display:none;">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-<div style='display:none;'>아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-<div style="display:none;">아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-{% endblock %}
-{% block script %} 
+<div style="display: none;">
+	아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+<div style="display: none;">
+	아이콘 제작자 <a href="" title="iconixar">iconixar</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+<div style="display: none;">
+	Icons made by
+	<a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>
+	from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+</div>
+<div style="display: none;">
+	아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+<div style="display: none;">
+	아이콘 제작자
+	<a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
+{% endblock %} {% block script %}
 <script>
-	const comfort=['더 잘할 수 없어도 더 노력하는 거라면 그게 더 아름다운게 아닐까','곧 힘들지 않은 날이 올거야 분명.','아무런 가능성이 없었다면 처음부터 시작하지도 않았을 거야. ','반드시 좋은 날은 찾아와. 포기하지만 않는다면. ',`'힘내야지..'가 아닌 '힘낼 거야'가 되기.`,'포기하지 마. ','걱정하지 마. 잘하고 있어. ','쉬지 않고 걷는 것보다 제대로 된 방향인지 한 번더 살펴볼 필요가 있어. ','힘내. 어차피 일어설 거잖아. ','지금 너무나 잘하고 있다는 것을 너가 알아주면 좋겠어. ','연은 순풍이 아니라 역풍에서 가장 높게 난데','흠집 없는 조약돌보다는 흠집 있는 다이아몬드가 낫던데','다른무엇보다 너를 우선시해줘.','외롭고 슬프다면 잘찾아왔어 울고가도되','무언가 잘 안되고 있나요? 도와드리고 싶어요. ','해뜨기 전이 가장 어둡다는거 알고 계셨나요?','혹시 사랑에 관하여 고민이 있다면 오른쪽 편지를 눌러봐요.'];
-	
-	const mainHead=document.getElementsByClassName('mainHead')[0];
-	const letter=document.getElementsByClassName('letter')[0];
-	const write=document.getElementsByClassName('write')[0];
-	const writeExit=document.getElementsByClassName('writeExit')[0];
-	const pen=document.getElementsByClassName('pen')[0];
-	const mailbox=document.getElementsByClassName('mailbox')[0];
-	const letterSubmit=document.getElementById('letterSubmit');
-	
-	letterSubmit.addEventListener('click',()=>{
-		const letterWrite=document.getElementById('letterWrite');
-		axios.post('/post/write',{
-			content:letterWrite.value,
-		}).then((res)=>{
-			
-		});
+	const comfort = [
+		'더 잘할 수 없어도 더 노력하는 거라면 그게 더 아름다운게 아닐까',
+		'곧 힘들지 않은 날이 올거야 분명.',
+		'아무런 가능성이 없었다면 처음부터 시작하지도 않았을 거야. ',
+		'반드시 좋은 날은 찾아와. 포기하지만 않는다면. ',
+		`'힘내야지..'가 아닌 '힘낼 거야'가 되기.`,
+		'포기하지 마. ',
+		'걱정하지 마. 잘하고 있어. ',
+		'쉬지 않고 걷는 것보다 제대로 된 방향인지 한 번더 살펴볼 필요가 있어. ',
+		'힘내. 어차피 일어설 거잖아. ',
+		'지금 너무나 잘하고 있다는 것을 너가 알아주면 좋겠어. ',
+		'연은 순풍이 아니라 역풍에서 가장 높게 난데',
+		'흠집 없는 조약돌보다는 흠집 있는 다이아몬드가 낫던데',
+		'다른무엇보다 너를 우선시해줘.',
+		'외롭고 슬프다면 잘찾아왔어 울고가도되',
+		'무언가 잘 안되고 있나요? 도와드리고 싶어요. ',
+		'해뜨기 전이 가장 어둡다는거 알고 계셨나요?',
+		'혹시 사랑에 관하여 고민이 있다면 오른쪽 편지를 눌러봐요.',
+	];
+
+	const mainHead = document.getElementsByClassName('mainHead')[0];
+	const letter = document.getElementsByClassName('letter')[0];
+	const write = document.getElementsByClassName('write')[0];
+	const writeExit = document.getElementsByClassName('writeExit')[0];
+	const pen = document.getElementsByClassName('pen')[0];
+	const mailbox = document.getElementsByClassName('mailbox')[0];
+	const letterSubmit = document.getElementById('letterSubmit');
+	const boxDiv = document.getElementById('boxDiv');
+	const letterBird = document.getElementsByClassName('letterBird')[0];
+	const question = document.getElementsByClassName('question')[0];
+	const list = document.getElementsByClassName('list')[0];
+	const explain = document.getElementsByClassName('explain')[0];
+	const mainbird = document.getElementsByClassName('mainbird')[0];
+
+	letterSubmit.addEventListener('click', () => {
+		const letterWrite = document.getElementById('letterWrite');
+		axios
+			.post('/post/write', {
+				content: letterWrite.value,
+			})
+			.then((res) => {
+				write.style.display = 'none';
+				letterBird.style.display = 'flex';
+				setTimeout(() => {
+					letterBird.style.display = 'none';
+				}, 3000);
+			});
 	});
-	
-	mailbox.addEventListener('click',()=>{
-		// 대화목록
-		
-	});
-	letter.addEventListener('click',()=>{
-		write.style.display="flex";
-	});
-	pen.addEventListener('click',()=>{
-		write.style.display="flex";
-	});
-	writeExit.addEventListener('click',()=>{
-		write.style.display="none";
-	});
-	let bIdx=0;
-	
-		mainHead.textContent="";
-		for(let i=0;i<comfort[0].length;i++){
-			setTimeout(()=>{
-				mainHead.textContent+=comfort[0][i];
-			},2500*((i+1)/comfort[0].length ) );
-			
+	let questionTOF = false;
+	question.addEventListener('click', () => {
+		if (questionTOF == false) {
+			explain.style.display = 'flex';
+			boxDiv.style.display = 'none';
+			question.style.background = 'url(/photo/cancel.png)';
+			question.style.backgroundSize = '100% 100%';
+			questionTOF = true;
+		} else {
+			explain.style.display = 'none';
+			boxDiv.style.display = 'flex';
+			question.style.background = 'url(/photo/question.png)';
+			question.style.backgroundSize = '100% 100%';
+			questionTOF = false;
 		}
-	
-	setInterval(()=>{
-		while(true){
-			const rIdx=Math.floor(Math.random()*comfort.length);
-			if(rIdx!=bIdx){
-				bIdx=rIdx;
+	});
+	let mailboxTOF = false;
+	mailbox.addEventListener('click', () => {
+		if (mailboxTOF == false) {
+			list.style.display="flex";
+			boxDiv.style.display = 'none';
+			mainbird.style.display = 'none';
+			question.style.display = 'none';
+			mailboxTOF = true;
+		} else {
+			list.style.display="none";
+			boxDiv.style.display = 'flex';
+			mainbird.style.display = 'flex';
+			question.style.display = 'flex';
+			mailboxTOF = false;
+		}
+	});
+	letter.addEventListener('click', () => {
+		write.style.display = 'flex';
+	});
+	pen.addEventListener('click', () => {
+		write.style.display = 'flex';
+	});
+	writeExit.addEventListener('click', () => {
+		write.style.display = 'none';
+	});
+	let bIdx = 0;
+
+	mainHead.textContent = '';
+	for (let i = 0; i < comfort[0].length; i++) {
+		setTimeout(() => {
+			mainHead.textContent += comfort[0][i];
+		}, 2500 * ((i + 1) / comfort[0].length));
+	}
+
+	setInterval(() => {
+		while (true) {
+			const rIdx = Math.floor(Math.random() * comfort.length);
+			if (rIdx != bIdx) {
+				bIdx = rIdx;
 				break;
 			}
 		}
-		mainHead.textContent="";
-		for(let i=0;i<comfort[bIdx].length;i++){
-			setTimeout(()=>{
-				mainHead.textContent+=comfort[bIdx][i];
-			},2500*((i+1)/comfort[bIdx].length ) );
-			
+		mainHead.textContent = '';
+		for (let i = 0; i < comfort[bIdx].length; i++) {
+			setTimeout(() => {
+				mainHead.textContent += comfort[bIdx][i];
+			}, 2500 * ((i + 1) / comfort[bIdx].length));
 		}
-		
-	},5000);
+	}, 5000);
 </script>
 {% endblock %}

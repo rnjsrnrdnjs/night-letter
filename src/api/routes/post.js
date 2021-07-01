@@ -16,8 +16,8 @@ module.exports = (app) => {
 				mac: uuid,
 				dday: 30,
 			});
-			req.session.uuid = uuid;
-			res.json({ uuid: uuid });
+			req.session.uuid =await uuid;
+			await res.json({ uuid: uuid });
 		} catch (err) {
 			console.error(err);
 			next(err);
@@ -34,8 +34,8 @@ module.exports = (app) => {
 					dday: 30,
 				});
 			}
-			req.session.uuid = req.body.uuid;
-			res.json({ uuid: req.body.uuid });
+			req.session.uuid = await req.body.uuid;
+			await res.json({ uuid: req.body.uuid });
 		} catch (err) {
 			console.error(err);
 			next(err);
