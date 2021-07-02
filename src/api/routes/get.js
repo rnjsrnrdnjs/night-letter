@@ -18,23 +18,42 @@ module.exports = (app) => {
 			console.error(err);
 		}
 	});
-	router.get('/main', async (req, res, next) => {
+	router.get('/main/:uuid', async (req, res, next) => {
 		try {
+			//읽지 않은 편지 있는지 만 파악
 			const chats=await Chat.findAll({
 				where:{
-					[Op.or]: [{send: req.session.uuid}, {receive: req.session.uuid}],
-				}
+					receive: req.params.uuid
+					//[Op.or]: [{send: req.params.uuid}, {receive: req.params.uuid}],
+				},
 			});
-			const send=[];
-			const receive=[];
-			const map=new Map();
-			
-			console.log(chats);
+			let readTOF=false;
+			for(let i in chats){
+				console.log(chats[i]);
+				if(chats[i].read==1){
+					readTOF=await true;
+				}
+			}
+			const send=await Chat.findAll({
+				where:{
+					send: req.params.uuid
+				},
+				order: [['createdAt', 'DESC']],
+			});
+			const receive=await Chat.findAll({
+				where:{
+					receive: req.params.uuid
+				},
+				order: [['createdAt', 'DESC']],
+			});
 			res.render('main',{
-				chats:chats,
+				read:readTOF,
+				send:send,
+				receive:receive,
 			});
 		} catch (err) {
 			console.error(err);
 		}
 	});
+	
 };

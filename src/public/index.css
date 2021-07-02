@@ -181,7 +181,51 @@ body{
 	width: 100vw;
     margin-top: 5vh;
     height: 75vh;
-    background: #2F4C74;
+    /*background: #2F4C74;*/
+    flex-direction: column;
+}
+.list >div >span{
+	cursor: pointer;
+    background: black;
+    border-radius: 5px;
+    padding: 2vw;
+    text-shadow: 3px 2px black;
+    color: gold;
+    box-shadow: 1px 1px gold;
+}
+ div.list > div.send > div:nth-child(3n) > div:nth-child(1){
+	background:url(/photo/r1.jpg);
+	background-size:100% 100%;
+}
+ div.list > div.send > div:nth-child(3n+1) > div:nth-child(1){
+	background:url(/photo/r2.jpg);
+	background-size:100% 100%;
+}
+ div.list > div.send > div:nth-child(3n+2) > div:nth-child(1){
+	background:url(/photo/r3.jpg);
+	background-size:100% 100%;
+}
+ div.list > div.receive > div:nth-child(3n) > div:nth-child(1){
+	background:url(/photo/s1.jpg);
+	background-size:100% 100%;
+}
+ div.list > div.receive > div:nth-child(3n+1) > div:nth-child(1){
+	background:url(/photo/s2.jpg);
+	background-size:100% 100%;
+}
+ div.list > div.receive > div:nth-child(3n+2) > div:nth-child(1){
+	background:url(/photo/s3.jpg);
+	background-size:100% 100%;
+}
+
+.exitList{
+	background:url(/photo/cancel.png);
+	background-size:100% 100%;
+	position:absolute;
+	width:10vw;
+	height:10vw;
+	top:23vh;
+	right:5vw;
 }
 .letterBird{
 	display:none;
@@ -223,6 +267,27 @@ body{
 	    text-decoration: underline;
     padding: 2vh;
 }
+.letterlist{
+	width: 80vw;
+    margin-left: 10vw;
+    margin-top: 3vh;
+    background: url(/photo/listBG.jpg);
+	background-size:100% 100%;
+flex-direction: row;
+}
+.letterlist:last-child{
+	margin-bottom:3vh;
+}
+.receive > div:last-child{
+	margin-bottom:3vh;
+}
+.send{
+	flex-direction: column;
+overflow: scroll;
+}
+.receive{
+	flex-direction: column;
+overflow: scroll;}
 @keyframes mainB{
 	0%{
 		transform:translateY(0px) skewx(0deg);

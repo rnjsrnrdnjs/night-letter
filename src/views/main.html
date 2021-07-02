@@ -57,15 +57,69 @@
 		</div>
 	</div>
 	<div class="list">
-		<div>
-			<span>보낸편지</span>
-			<span>받은편지</span>
+		<div class="exitList"></div>
+		<div
+			 id="sORr"
+			style="
+				justify-content: center;
+				width: 100vw;
+				margin-top: 2vh;
+				font-size: 1.3rem;
+				font-weight: bold;
+			"
+		>
+			<span id="sendBtn" style="cursor: pointer;">보낸편지</span>
+			<span id="receiveBtn" style="cursor: pointer; margin-left: 10vw; background: grey;"
+				>받은편지</span
+			>
 		</div>
+
+		<div class="send">
+			{% for letter in send %}
+			<div class="letterlist" id="send{{loop.index}}" style="cursor: pointer;">
+				<div style="flex: 2; margin: 4vw;"></div>
+				<div style="height: 100px; flex: 4; margin: 4vw; flex-direction: column;">
+					<div style="flex: 4; overflow: hidden;">
+						{{letter.content}}
+					</div>
+					<div style="flex: 1; font-size: 0.7rem;">
+						{{letter.createdAt.getFullYear()}}년 {{letter.createdAt.getMonth()+1}}월
+						{{letter.createdAt.getDate()}}일 {{letter.createdAt.getHours()+9}}시
+						{{letter.createdAt.getMinutes()}}분 {{letter.createdAt.getSeconds()}}초
+					</div>
+				</div>
+			</div>
+			
+			{% endfor %}
+		</div>
+		<div class="receive" style="display:none;">
+		{% for letter in receive %}
+			<div class="letterlist" id="receive{{loop.index}}" style="cursor: pointer;">
+				<div style="flex: 2; margin: 4vw;"></div>
+				<div style="height: 100px; flex: 4; margin: 4vw; flex-direction: column;">
+					<div style="flex: 4; overflow: hidden;">
+						{{letter.content}}
+					</div>
+					<div style="flex: 1; font-size: 0.7rem;">
+						{{letter.createdAt.getFullYear()}}년 {{letter.createdAt.getMonth()+1}}월
+						{{letter.createdAt.getDate()}}일 {{letter.createdAt.getHours()+9}}시
+						{{letter.createdAt.getMinutes()}}분 {{letter.createdAt.getSeconds()}}초
+					</div>
+					<div style="display:none;">
+						{{letter.send}}
+					</div>
+				</div>
+			</div>
+			
+			{% endfor %}
+		</div>
+		
 		<!--for 문 편지들-->
 	</div>
 
 	<div id="boxDiv" style="position: absolute; width: 100vw; height: 20vh; top: 40vh;">
 		<div
+			class="img"
 			style="
 				box-shadow: 1px 2px firebrick;
 				width: 10%;
@@ -74,7 +128,26 @@
 				border-radius: 50%;
 			"
 		>
+			{% if read===true %}
+			<div
+				class="mailbox"
+				style="background: url(/photo/postbox2.png); background-size: 100% 100%;"
+			>
+				<div
+					style="
+						background: url(/photo/new.png);
+						background-size: 100% 100%;
+						width: 55%;
+						height: 55%;
+						position: absolute;
+						right: -15%;
+						top: -30%;
+					"
+				></div>
+			</div>
+			{% else %}
 			<div class="mailbox"></div>
+			{% endif %}
 		</div>
 		<div
 			class="pen"
@@ -110,11 +183,64 @@
 			편지는 30일 동안 접속이없던 사람에게는 보내지지 않아요.
 		</div>
 		<div>
-			다른 기기에서는 같은 아이디로 로그인이 안되요!
+			-저는 모두가 행복했으면 좋겠어요-
 		</div>
 	</div>
 	<div class="letterBird"></div>
 	<div class="question"></div>
+	
+	<div class="write" id="readLetter" style="display: none;">
+				<div
+					class="writeExit2"
+					style="
+						background: url(/photo/cancel.png);
+						position: absolute;
+						background-size: 100% 100%;
+						width: 40px;
+						height: 40px;
+						right: 5%;
+						cursor: pointer;
+					"
+				></div>
+				<div id="contentLetter"
+					style="
+						background: transparent;
+						border: none;
+						width: 82vw;
+						margin-left: 8vw;
+						height: 40vh;
+						margin-top: 6vh;
+						font-size: 1.3rem;
+						resize: none;
+					"
+				>123123</div>
+			</div>
+	<div 
+			id="letterReply"
+			style="
+				cursor: pointer;
+				z-index: 3;width: 40px;
+				height: 40px;
+				position: absolute;
+				top: 78%;
+				left: 13%;
+				background: wheat;
+				border: 1px solid #39557b;
+				border-radius: 15px;
+				box-shadow: 2px 1px #203051;
+				padding: 1vh;
+				   display:none;
+			"
+		>
+			<div
+				style="
+					background: url(/photo/reply.png);
+					background-size: 100% 100%;
+					width: 100%;
+					height: 100%;
+				"
+			></div>
+		</div>
 </div>
 
 <div style="display: none;">
@@ -139,6 +265,11 @@
 	<a href="https://www.flaticon.com/kr/authors/smashicons" title="Smashicons">Smashicons</a> from
 	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
 </div>
+<div style="display: none;">
+	아이콘 제작자
+	<a href="https://www.flaticon.com/kr/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from
+	<a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+</div>
 {% endblock %} {% block script %}
 <script>
 	const comfort = [
@@ -158,7 +289,7 @@
 		'외롭고 슬프다면 잘찾아왔어 울고가도되',
 		'무언가 잘 안되고 있나요? 도와드리고 싶어요. ',
 		'해뜨기 전이 가장 어둡다는거 알고 계셨나요?',
-		'혹시 사랑에 관하여 고민이 있다면 오른쪽 편지를 눌러봐요.',
+		'혹시 말못할 고민이 있다면 오른쪽 편지를 눌러봐요.',
 	];
 
 	const mainHead = document.getElementsByClassName('mainHead')[0];
@@ -174,18 +305,102 @@
 	const list = document.getElementsByClassName('list')[0];
 	const explain = document.getElementsByClassName('explain')[0];
 	const mainbird = document.getElementsByClassName('mainbird')[0];
+	const send = document.getElementsByClassName('send')[0];
+	const receive = document.getElementsByClassName('receive')[0];
+	const exitList = document.getElementsByClassName('exitList')[0];
+	const sendBtn = document.getElementById('sendBtn');
+	const receiveBtn = document.getElementById('receiveBtn');
+	const sORr= document.getElementById('sORr');
+	const contentLetter=document.getElementById('contentLetter');
+	const letterReply=document.getElementById('letterReply');
+	
+	
+	sendBtn.addEventListener('click', () => {
+		sendBtn.style.background = 'black';
+		receiveBtn.style.background = 'grey';
+		send.style.display = 'flex';
+		receive.style.display = 'none';
+	});
+	receiveBtn.addEventListener('click', () => {
+		sendBtn.style.background = 'grey';
+		receiveBtn.style.background = 'black';
+		send.style.display = 'none';
+		receive.style.display = 'flex';
+	});
+	let sidx = 1;
+	while (true) {
+		const sendDiv = document.getElementById(`send${sidx}`);
+		if (!sendDiv) break;
+		sendDiv.addEventListener('click', () => {
+			const readLetter = document.getElementById(`readLetter`);
+			const content=sendDiv.childNodes[3].childNodes[1];
+			const date=sendDiv.childNodes[3].childNodes[3];
+			
+			contentLetter.textContent=`${content.textContent} \n ${date.textContent}`;
+			
+			
+			readLetter.style.display = 'flex';
+			exitList.style.display = 'none';
+			
+			const llist= document.getElementsByClassName('letterlist');
+			for(let i=0;i<llist.length;i++){
+				llist[i].style.display="none";
+			}
+			sORr.style.display="none";
+		});
+		sidx++;
+	}
+	let ridx = 1;
+	while (true) {
+		const receiveDiv = document.getElementById(`receive${ridx}`);
+		if (!receiveDiv) break;
+		receiveDiv.addEventListener('click', () => {
+			const readLetter = document.getElementById(`readLetter`);
+			const content=receiveDiv.childNodes[3].childNodes[1];
+			const date=receiveDiv.childNodes[3].childNodes[3];
+			
+			contentLetter.textContent=`${content.textContent} ${date.textContent}`;
 
+			readLetter.style.display = 'flex';
+							
+			exitList.style.display = 'none';
+			letterReply.style.display="flex";
+			
+			const llist= document.getElementsByClassName('letterlist');
+			for(let i=0;i<llist.length;i++){
+				llist[i].style.display="none";
+			}
+			sORr.style.display="none";
+		});
+		ridx++;
+	}
+	const writeExit2=document.getElementsByClassName('writeExit2')[0];
+	writeExit2.addEventListener('click',()=>{
+		const readLetter = document.getElementById(`readLetter`);
+			readLetter.style.display = 'none';	
+		exitList.style.display = 'flex';
+			letterReply.style.display="none";
+			
+			const llist= document.getElementsByClassName('letterlist');
+			for(let i=0;i<llist.length;i++){
+				llist[i].style.display="flex";
+			}
+			sORr.style.display="flex";
+	});
+	
 	letterSubmit.addEventListener('click', () => {
 		const letterWrite = document.getElementById('letterWrite');
 		axios
 			.post('/post/write', {
 				content: letterWrite.value,
+				uuid: localStorage.getItem('uuid'),
 			})
 			.then((res) => {
 				write.style.display = 'none';
 				letterBird.style.display = 'flex';
 				setTimeout(() => {
 					letterBird.style.display = 'none';
+					location.reload();
 				}, 3000);
 			});
 	});
@@ -205,21 +420,19 @@
 			questionTOF = false;
 		}
 	});
-	let mailboxTOF = false;
+	
 	mailbox.addEventListener('click', () => {
-		if (mailboxTOF == false) {
-			list.style.display="flex";
-			boxDiv.style.display = 'none';
-			mainbird.style.display = 'none';
-			question.style.display = 'none';
-			mailboxTOF = true;
-		} else {
-			list.style.display="none";
-			boxDiv.style.display = 'flex';
-			mainbird.style.display = 'flex';
-			question.style.display = 'flex';
-			mailboxTOF = false;
-		}
+		list.style.display = 'flex';
+		boxDiv.style.display = 'none';
+		mainbird.style.display = 'none';
+		question.style.display = 'none';
+	});
+	exitList.addEventListener('click', () => {
+		list.style.display = 'none';
+		boxDiv.style.display = 'flex';
+		mainbird.style.display = 'flex';
+		question.style.display = 'flex';
+		mailboxTOF = false;
 	});
 	letter.addEventListener('click', () => {
 		write.style.display = 'flex';

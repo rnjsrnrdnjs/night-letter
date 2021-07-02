@@ -8,12 +8,12 @@
 			<span style="color: gold;
     margin-right: 10px;">고민</span>있어요?
 		</div>
-		<div class="loadBtn" onClick="location.href='/main';">
+		<div class="loadBtn" id="enterBtn">
 			입장
 		</div>
 		<div class="loadSen">
 			<div>
-				스마트폰,PC 의 고유아이디로 입장됩니다.
+				카카오톡 아이디로 입장 가능합니다.
 			</div>
 			<div>
 				철저하게 익명성이 보장되니 걱정말구	
@@ -46,7 +46,12 @@
 		});
 	}
 	else{
+		console.log(localStorage.getItem('uuid'));
 		axios.post(`/post/loginUUID`,{uuid:localStorage.getItem('uuid')});
 	}
+	const enterBtn=document.getElementById('enterBtn');
+	enterBtn.addEventListener('click',()=>{
+		location.href=`/main/${localStorage.getItem('uuid')}`;
+	});
 </script>
 {% endblock %}
