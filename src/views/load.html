@@ -40,18 +40,8 @@
 {% endblock %}
 {% block script %} 
 <script>
-	if(localStorage.getItem('uuid')==null){
-		axios.post(`/post/makeUUID`).then((res)=>{
-			localStorage.setItem('uuid',res.data.uuid);
-		});
-	}
-	else{
-		console.log(localStorage.getItem('uuid'));
-		axios.post(`/post/loginUUID`,{uuid:localStorage.getItem('uuid')});
-	}
-	const enterBtn=document.getElementById('enterBtn');
 	enterBtn.addEventListener('click',()=>{
-		location.href=`/main/${localStorage.getItem('uuid')}`;
+		location.href=`/kakao`;
 	});
 </script>
 {% endblock %}

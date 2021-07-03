@@ -46,7 +46,7 @@ body{
 	cursor: pointer;
     width: 100px;
     height: 60px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: aliceblue;
     margin-top: 38vh;
@@ -181,7 +181,7 @@ body{
 	width: 100vw;
     margin-top: 5vh;
     height: 75vh;
-    /*background: #2F4C74;*/
+    background: radial-gradient(beige, transparent);
     flex-direction: column;
 }
 .list >div >span{

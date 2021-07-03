@@ -83,9 +83,7 @@
 						{{letter.content}}
 					</div>
 					<div style="flex: 1; font-size: 0.7rem;">
-						{{letter.createdAt.getFullYear()}}년 {{letter.createdAt.getMonth()+1}}월
-						{{letter.createdAt.getDate()}}일 {{letter.createdAt.getHours()+9}}시
-						{{letter.createdAt.getMinutes()}}분 {{letter.createdAt.getSeconds()}}초
+						{{letter.createdAt.getFullYear()}}년 {{letter.createdAt.getMonth()+1}}월 {{letter.createdAt.getDate()}}일 {{letter.createdAt.getHours()+9}}시 {{letter.createdAt.getMinutes()}}분 {{letter.createdAt.getSeconds()}}초
 					</div>
 				</div>
 			</div>
@@ -101,13 +99,9 @@
 						{{letter.content}}
 					</div>
 					<div style="flex: 1; font-size: 0.7rem;">
-						{{letter.createdAt.getFullYear()}}년 {{letter.createdAt.getMonth()+1}}월
-						{{letter.createdAt.getDate()}}일 {{letter.createdAt.getHours()+9}}시
-						{{letter.createdAt.getMinutes()}}분 {{letter.createdAt.getSeconds()}}초
+						{{letter.createdAt.getFullYear()}}년 {{letter.createdAt.getMonth()+1}}월 {{letter.createdAt.getDate()}}일 {{letter.createdAt.getHours()+9}}시 {{letter.createdAt.getMinutes()}}분 {{letter.createdAt.getSeconds()}}초
 					</div>
-					<div style="display:none;">
-						{{letter.send}}
-					</div>
+					<div style="display:none;">{{letter.send}}</div>
 				</div>
 			</div>
 			
@@ -204,7 +198,9 @@
 				></div>
 				<div id="contentLetter"
 					style="
-						background: transparent;
+						       overflow: scroll;
+						   white-space: pre-line;
+						   background: transparent;
 						border: none;
 						width: 82vw;
 						margin-left: 8vw;
@@ -213,7 +209,7 @@
 						font-size: 1.3rem;
 						resize: none;
 					"
-				>123123</div>
+				></div>
 			</div>
 	<div 
 			id="letterReply"
@@ -241,6 +237,66 @@
 				"
 			></div>
 		</div>
+	
+	
+	
+	<div class="write" id="reply" style="display: none;">
+		<div
+			class="replyExit"
+			style="
+				background: url(/photo/cancel.png);
+				position: absolute;
+				background-size: 100% 100%;
+				width: 40px;
+				height: 40px;
+				right: 5%;
+				cursor: pointer;
+			"
+		></div>
+		<textarea
+			name="reply"
+			id="replyContent"
+			style="
+				background: transparent;
+				border: none;
+				width: 82vw;
+				margin-left: 8vw;
+				height: 40vh;
+				margin-top: 6vh;
+				font-size: 1.3rem;
+				resize: none;
+			"
+			maxlength="1000"
+			placeholder="고민해결을 도와주어 보세요!"
+		></textarea>
+		<div
+			id="replySubmit"
+			style="
+				cursor: pointer;
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				top: 78%;
+				left: 13%;
+				background: wheat;
+				border: 1px solid #39557b;
+				border-radius: 15px;
+				box-shadow: 2px 1px #203051;
+				padding: 1vh;
+			"
+		>
+			<div
+				style="
+					background: url(/photo/airplane.png);
+					background-size: 100% 100%;
+					width: 100%;
+					height: 100%;
+				"
+			></div>
+		</div>
+		<div style="display:none;" id="replyId">
+		</div>
+	</div>
 </div>
 
 <div style="display: none;">
@@ -314,6 +370,23 @@
 	const contentLetter=document.getElementById('contentLetter');
 	const letterReply=document.getElementById('letterReply');
 	
+	const reply=document.getElementById('reply');
+	const replyExit=document.getElementsByClassName('replyExit')[0];
+	const replySubmit=document.getElementById('replySubmit');
+	const replyId=document.getElementById('replyId');
+
+	
+	letterReply.addEventListener('click', () => {
+		letterReply.style.display="none";
+		readLetter.style.display="none";
+		reply.style.display="flex";
+	});
+	replyExit.addEventListener('click',()=>{
+		letterReply.style.display="flex";
+		readLetter.style.display="flex";
+		reply.style.display="none";
+		
+	});
 	
 	sendBtn.addEventListener('click', () => {
 		sendBtn.style.background = 'black';
@@ -346,6 +419,7 @@
 			for(let i=0;i<llist.length;i++){
 				llist[i].style.display="none";
 			}
+			list.style.background="none";
 			sORr.style.display="none";
 		});
 		sidx++;
@@ -358,11 +432,14 @@
 			const readLetter = document.getElementById(`readLetter`);
 			const content=receiveDiv.childNodes[3].childNodes[1];
 			const date=receiveDiv.childNodes[3].childNodes[3];
+			const userId=receiveDiv.childNodes[3].childNodes[5];
+			replyId.textContent=userId.textContent.replace(/ /g,"");
 			
 			contentLetter.textContent=`${content.textContent} ${date.textContent}`;
 
 			readLetter.style.display = 'flex';
 							
+			list.style.background="none";
 			exitList.style.display = 'none';
 			letterReply.style.display="flex";
 			
@@ -370,6 +447,7 @@
 			for(let i=0;i<llist.length;i++){
 				llist[i].style.display="none";
 			}
+			list.style.background="none";
 			sORr.style.display="none";
 		});
 		ridx++;
@@ -385,15 +463,34 @@
 			for(let i=0;i<llist.length;i++){
 				llist[i].style.display="flex";
 			}
+			list.style.background="radial-gradient(beige, transparent)";
 			sORr.style.display="flex";
 	});
 	
+	replySubmit.addEventListener('click', () => {
+		const replyContent = document.getElementById('replyContent');
+		axios
+			.post('/post/reply', {
+				content: replyContent.value,
+				mac:replyId.textContent,
+			})
+			.then((res) => {
+				boxDiv.style.display="flex";
+				mainbird.style.display="flex";
+				reply.style.display = 'none';
+				letterBird.style.display = 'flex';
+				setTimeout(() => {
+					letterBird.style.display = 'none';
+					location.reload();
+				}, 3000);
+			});
+	});
+
 	letterSubmit.addEventListener('click', () => {
 		const letterWrite = document.getElementById('letterWrite');
 		axios
 			.post('/post/write', {
 				content: letterWrite.value,
-				uuid: localStorage.getItem('uuid'),
 			})
 			.then((res) => {
 				write.style.display = 'none';
@@ -426,6 +523,7 @@
 		boxDiv.style.display = 'none';
 		mainbird.style.display = 'none';
 		question.style.display = 'none';
+		axios.post('/post/read');
 	});
 	exitList.addEventListener('click', () => {
 		list.style.display = 'none';

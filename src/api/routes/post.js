@@ -8,46 +8,12 @@ const Op = Sequelize.Op;
 module.exports = (app) => {
 	app.use('/post', router);
 
-	router.post(`/makeUUID`, async (req, res, next) => {
-		try {
-			let uuid = await uuidv4();
-			await User.create({
-				mac: uuid,
-				dday: 30,
-			});
-			//req.session.uuid =await uuid;
-			await res.json({ uuid: uuid });
-		} catch (err) {
-			console.error(err);
-			next(err);
-		}
-	});
-	router.post(`/loginUUID`, async (req, res, next) => {
-		try {
-			const user = await User.findOne({
-				where: {
-					mac: req.body.uuid,
-				},
-			});
-			if (!user) {
-				await User.create({
-					mac: req.body.uuid,
-					dday: 30,
-				});
-			}
-			//req.session.uuid = await req.body.uuid;
-			await res.json({ uuid: req.body.uuid });
-		} catch (err) {
-			console.error(err);
-			next(err);
-		}
-	});
 	router.post(`/write`, async (req, res, next) => {
 		try {
 			const receive = await User.findAll({
 				where: {
 					mac: {
-						[Op.ne]: req.body.uuid,
+						[Op.ne]: req.user.mac,
 					},
 					dday: {
 						[Op.ne]: 0,
@@ -60,15 +26,45 @@ module.exports = (app) => {
 			const idx = await Math.floor(Math.random() * receive.length);
 			const me = await User.findOne({
 				where: {
-					mac: req.body.uuid,
+					mac: req.user.mac,
 				},
 			});
 			await Chat.create({
 				UserId: me.id,
 				content: req.body.content,
-				send: req.body.uuid,
+				send: me.mac,
 				receive: receive[idx].mac,
 				read: 1,
+			});
+			res.json({ success: 'yes' });
+		} catch (err) {
+			console.error(err);
+			next(err);
+		}
+	});
+	router.post(`/reply`, async (req, res, next) => {
+		try {
+			await Chat.create({
+				UserId: req.user.id,
+				content: req.body.content,
+				send: req.user.mac,
+				receive: req.body.mac,
+				read: 1,
+			});
+			res.json({ success: 'yes' });
+		} catch (err) {
+			console.error(err);
+			next(err);
+		}
+	});
+	router.post(`/read`, async (req, res, next) => {
+		try {
+			await Chat.update({
+				read:0,
+			},{
+				where:{
+					receive:req.user.mac,
+				},
 			});
 			res.json({ success: 'yes' });
 		} catch (err) {

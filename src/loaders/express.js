@@ -8,10 +8,15 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const hpp = require('hpp');
 const cors = require('cors')();
+const passport=require('passport');
 
 const router = require('../api');
+const passportConfig=require('../passport');
 
 module.exports = (app) => {
+	
+	passportConfig();
+	
     app.set('view engine', 'html');
     nunjucks.configure('views', {
         express: app,
@@ -49,7 +54,9 @@ module.exports = (app) => {
         },
 		name:'session-cookie',
     }));
-
+	app.use(passport.initialize());
+	app.use(passport.session());
+	
     app.use(router());
 
     app.use((req, res, next) => {
