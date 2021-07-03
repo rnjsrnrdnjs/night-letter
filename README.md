@@ -8,6 +8,10 @@ https://www.ofoct.com/image-editor/bear-image-editor-online.html?fileurl=%2F%2Fc
 
 uuid=7e4bd379-3489-4b96-aa31-72d5a886f8d2
 
-1. 카카오 로그인
-2. firebase 알림
-3. 디자인
+todo
+
+아이폰 push 알림
+-https://github.com/node-apn/node-apn
+
+안드로이드 push알림
+-https://github.com/ToothlessGear/node-gcm
