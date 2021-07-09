@@ -16,11 +16,10 @@ app.set('port',process.env.PORT || 3000);
       ################################################
     `);
   }).on('error', err => {
-    Logger.error(err);
+    console.error(err);
     process.exit(1);
   });
 
 }
 
 startServer();
-
